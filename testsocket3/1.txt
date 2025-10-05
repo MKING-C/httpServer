@@ -1,0 +1,14 @@
+SRCDIR = src
+INCDIR = include
+SOURCES = $(SRCDIR)/main.cpp $(SRCDIR)/XTcp.cpp
+OBJECTS = $(SOURCES:.cpp=.o)
+TARGET = tcpserver
+
+$(TARGET): $(OBJECTS)
+	g++ $(OBJECTS) -o $(TARGET) -std=c++11 -lpthread
+
+%.o: %.cpp
+	g++ -I $(INCDIR) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) $(TARGET)
